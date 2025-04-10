@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aop.test.mapper.BoardMapper">
+	<sql id="cols">
+		BI.BI_NUM, BI.BI_TITLE, BI.BI_CONTENT, UI.UI_NUM, 
+		UI.UI_NICK_NAME, BI.CREDAT, BI.CRETIM, BI.LMODAT, 
+		BI.LMOTIM, BI.ACTIVE
+	</sql>
+	<select id="selectBoards" resultType="com.aop.test.vo.BoardVO">
+		select <include refid="cols"></include>
+		from BOARD_INFO BI
+		inner join USER_INFO UI
+		on BI.UI_NUM = UI.UI_NUM
+		WHERE BI.ACTIVE = '1'
+	    ORDER BY BI_NUM DESC
+	</select>
+	<select id="selectBoard" resultType="com.aop.test.vo.BoardVO">
+		select <include refid="cols"></include>
+		from BOARD_INFO BI
+		inner join USER_INFO UI
+		on BI.UI_NUM = UI.UI_NUM
+		WHERE BI_NUM = #{biNum}
+	</select>
+	<insert id="insertBoard">
+		insert into BOARD_INFO(BI_TITLE, BI_CONTENT, UI_NUM)
+		values(#{biTitle}, #{biContent}, #{uiNum})
+	</insert>
+	<update id="updateBoard">
+		update BOARD_INFO
+		set BI_TITLE = #{biTitle},
+		BI_CONTENT = #{biContent}
+		WHERE BI_NUM = #{biNum}
+	</update>
+	<delete id="deleteBoard">
+		DELETE FROM BOARD_INFO
+		WHERE BI_NUM = #{biNum}
+	</delete>
+</mapper>
