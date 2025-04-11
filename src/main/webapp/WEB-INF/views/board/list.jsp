@@ -32,7 +32,7 @@ $(document).ready(function(){
 				for(const board of res){
 					html += '<tr>';
 					html += '<td>' + board.biNum + '</td>';
-					html += '<td>' + board.biTitle + '</td>';
+					html += '<td><a href="/views/board/view?biNum=' + board.biNum + '">' + board.biTitle + '</a></td>';
 					html += '<td>' + board.uiNickName + '</td>';
 					html += '<td>' + board.credat + '</td>';
 					html += '</tr>';
