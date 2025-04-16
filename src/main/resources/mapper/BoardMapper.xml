@@ -13,8 +13,25 @@
 		from BOARD_INFO BI
 		inner join USER_INFO UI
 		on BI.UI_NUM = UI.UI_NUM
-		WHERE BI.ACTIVE = '1'
+		<where>
+			<if test='biTitle != null and biTitle != ""'>
+				AND BI_TITLE LIKE CONCAT('%', #{biTitle}, '%')
+			</if>
+		AND BI.ACTIVE = '1'
+		</where>
 	    ORDER BY BI_NUM DESC
+	    LIMIT #{offset}, #{rowCount}
+	</select>
+	<select id="selectBoardsCnt" resultType="int">
+		select count(*)
+		from BOARD_INFO BI
+		inner join USER_INFO UI
+		on BI.UI_NUM = UI.UI_NUM
+		<where>
+			<if test='biTitle != null and biTitle != ""'>
+				AND BI_TITLE LIKE CONCAT('%', #{biTitle}, '%')
+			</if>
+		</where>
 	</select>
 	<select id="selectBoard" resultType="com.aop.test.vo.BoardVO">
 		select <include refid="cols"></include>

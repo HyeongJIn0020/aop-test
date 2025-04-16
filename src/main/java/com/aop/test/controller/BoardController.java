@@ -1,6 +1,7 @@
 package com.aop.test.controller;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,8 +27,11 @@ public class BoardController {
 	
 	@GetMapping("/boards")
 	@ResponseBody
-	public List<BoardVO> selectBoards(@ModelAttribute BoardVO board){
-		return boardService.selectBoards(board);
+	public Map<String, Object> selectBoards(@ModelAttribute BoardVO board){
+		Map<String, Object> res = new HashMap<>();
+		res.put("boardList", boardService.selectBoards(board));
+		res.put("totalPage", boardService.selectBoardsCnt(board));
+		return res;
 	}
 	
 	@GetMapping("/boards/{biNum}")

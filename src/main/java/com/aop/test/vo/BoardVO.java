@@ -18,4 +18,7 @@ public class BoardVO {
 	private String lmodat;
 	private String lmotim;
 	private String active;
+	private int page;
+	private int offset;
+	private int rowCount;
 }

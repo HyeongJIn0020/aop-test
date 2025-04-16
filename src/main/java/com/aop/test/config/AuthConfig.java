@@ -13,7 +13,7 @@ import com.aop.test.interceptor.AuthInterceptor;
 
 import lombok.extern.slf4j.Slf4j;
 
-@Configuration
+//@Configuration
 @Slf4j
 @PropertySource("classpath:etc.properties")
 public class AuthConfig implements WebMvcConfigurer{
