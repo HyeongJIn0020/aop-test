@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.aop.test.service.BoardService;
 import com.aop.test.vo.BoardVO;
 import com.aop.test.vo.UserVO;
+import com.github.pagehelper.PageInfo;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -32,6 +33,11 @@ public class BoardController {
 		res.put("boardList", boardService.selectBoards(board));
 		res.put("totalPage", boardService.selectBoardsCnt(board));
 		return res;
+	}
+	@GetMapping("/boards/helper")
+	@ResponseBody
+	public PageInfo<BoardVO> getBoardListWithHelper(@ModelAttribute BoardVO board){
+		return boardService.selectBoardsWithHelper(board);
 	}
 	
 	@GetMapping("/boards/{biNum}")

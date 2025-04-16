@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aop.test.mapper.TestMapper">
+	<select id="selectTestList" resultType="com.aop.test.vo.TestVO">
+		select TI_NUM, TI_NAME, TI_DESC, TI_AGE
+		FROM TEST_INFO
+		ORDER BY TI_NUM DESC
+	</select>
+</mapper>
